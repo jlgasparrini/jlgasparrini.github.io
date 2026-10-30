@@ -3,700 +3,479 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonel Gasparrini - Software Engineer</title>
+    <title>Leonel Gasparrini, Senior Full-Stack Engineer</title>
+    <meta name="description" content="Senior full-stack engineer with 13 years of Ruby on Rails and React. Checkout, payments and search for GOAT Group; now rebuilding Elefta's platform. Open to senior full-time remote roles.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jlgasparrini.github.io/">
+    <meta property="og:title" content="Leonel Gasparrini, Senior Full-Stack Engineer">
+    <meta property="og:description" content="13 years of Ruby on Rails and React. Checkout, payments and search at GOAT Group. Open to senior full-time remote roles.">
+    <meta property="og:image" content="https://jlgasparrini.github.io/leonel.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#F2F4F6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0D1520" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23B3123A'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3ELG%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..800;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --bg-primary: #0a0e27;
-            --bg-secondary: #151b3d;
-            --bg-card: #1a2142;
-            --text-primary: #e4e6eb;
-            --text-secondary: #b0b3c1;
-            --accent-blue: #3b82f6;
-            --accent-blue-hover: #2563eb;
-            --border-color: #2d3558;
+            --bg: #F2F4F6;
+            --ink: #0F1B2D;
+            --muted: #566273;
+            --rule: #D2D8DF;
+            --track: #E3E7EC;
+            --accent: #B3123A;
+            --on-accent: #FFFFFF;
         }
 
-        html {
-            scroll-behavior: smooth;
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D1520;
+                --ink: #E6EBF1;
+                --muted: #95A1B2;
+                --rule: #26334A;
+                --track: #18233A;
+                --accent: #FF5C7E;
+                --on-accent: #0D1520;
+            }
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header/Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero h2 {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .tech-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .badge {
-            background-color: var(--bg-card);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .badge:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-blue-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent-blue);
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-blue) 0%, transparent 100%);
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--bg-secondary);
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
             font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            max-width: 900px;
+        h1, h2, h3, p, ul { margin: 0; }
+        ul { padding: 0; list-style: none; }
+
+        a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+        a:hover { color: var(--accent); }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+        .wrap {
+            max-width: 68rem;
             margin: 0 auto;
+            padding: 0 1rem;
         }
+        @media (min-width: 48rem) { .wrap { padding: 0 2.5rem; } }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 0;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background-color: var(--accent-blue);
-            border: 3px solid var(--bg-primary);
-        }
-
-        .timeline-content {
-            background-color: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            border-color: var(--accent-blue);
-            transform: translateX(5px);
-        }
-
-        .timeline-header {
+        /* Top bar */
+        .top {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
+            align-items: baseline;
+            gap: 1rem;
+            padding-top: 1.75rem;
+            font-size: 1rem;
+        }
+        .top strong { font-weight: 700; }
+        .top nav { display: flex; gap: 1.25rem; }
+        .top nav a { text-decoration: none; color: var(--muted); }
+        .top nav a:hover { color: var(--accent); }
+        @media (max-width: 30rem) { .top nav a[href="#experience"] { display: none; } }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            gap: 1.5rem;
+            padding-block: 4.5rem 3.5rem;
+        }
+        @media (min-width: 48rem) {
+            .hero { grid-template-columns: 9rem 1fr; gap: 2.5rem; padding-block: 7rem 4.5rem; }
+        }
+        .hero img {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        @media (min-width: 48rem) { .hero img { width: 9rem; height: 9rem; } }
+
+        .hero h1 {
+            font-size: clamp(2.25rem, 5.4vw, 4.25rem);
+            line-height: 1.04;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            max-width: 15ch;
+        }
+        .lede {
+            margin-top: 1.5rem;
+            max-width: 36rem;
+            font-size: 1.25rem;
+            color: var(--muted);
+        }
+        .lede strong { color: var(--ink); font-weight: 600; }
+
+        .cta {
+            display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .timeline-company {
-            color: var(--accent-blue);
-            font-weight: 500;
-        }
-
-        .timeline-date {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-        }
-
-        .timeline-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .timeline-description li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-description li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue);
-        }
-
-        /* Skills Section */
-        .skills {
-            background-color: var(--bg-secondary);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .skill-category {
-            background-color: var(--bg-card);
-            padding: 2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem 1.5rem;
+            margin-top: 2rem;
         }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-category li::before {
-            content: '✓';
-            color: var(--accent-blue);
-            font-weight: bold;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            background-color: var(--bg-card);
-            padding: 2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .contact-item a {
-            color: var(--accent-blue);
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.4rem;
+            background: var(--accent);
+            color: var(--on-accent);
+            font-weight: 700;
             text-decoration: none;
-            word-break: break-all;
+            border-radius: 999px;
+        }
+        .button:hover { color: var(--on-accent); filter: brightness(1.08); }
+        .status { color: var(--muted); font-size: 1rem; }
+        .status::before {
+            content: '';
+            display: inline-block;
+            width: 0.55rem;
+            height: 0.55rem;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+            background: #1F9D55;
+            vertical-align: 0.08em;
         }
 
-        .contact-item a:hover {
-            text-decoration: underline;
+        /* Career chart: one bar per role, positioned in years since 2013 */
+        .career { padding-bottom: 5rem; }
+        .chart { --from: 2013; --span: 14; }
+        .row, .axis {
+            display: grid;
+            grid-template-columns: 1fr;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 48rem) {
+            .row, .axis { grid-template-columns: 13rem 1fr; }
+        }
+        .row { padding: 0.45rem 0; }
+        .row-label { font-size: 0.95rem; line-height: 1.3; }
+        .row-label span { color: var(--muted); }
+        .track {
+            position: relative;
+            height: 0.9rem;
+            margin-top: 0.35rem;
+            background: var(--track);
+            border-radius: 3px;
+        }
+        @media (min-width: 48rem) { .track { margin-top: 0.2rem; } }
+        .bar {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: calc((var(--s) - var(--from)) / var(--span) * 100%);
+            width: calc((var(--e) - var(--s)) / var(--span) * 100%);
+            min-width: 4px;
+            background: var(--ink);
+            border-radius: 3px;
+            transform-origin: left;
+            animation: grow 0.9s cubic-bezier(.2, .7, .2, 1) backwards;
+            animation-delay: calc((var(--s) - var(--from)) * 70ms);
+        }
+        .row.now .bar { background: var(--accent); }
+        .row.side .bar { background: var(--muted); }
+        @keyframes grow { from { transform: scaleX(0); } }
+        @media (prefers-reduced-motion: reduce) { .bar { animation: none; } }
+
+        .axis { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+        .ticks { display: grid; grid-template-columns: repeat(14, 1fr); }
+        @media (max-width: 47.99rem) {
+            .axis > span:first-child { display: none; }
+            .ticks span:nth-child(even) { visibility: hidden; }
+        }
+        .chart-note { margin-top: 1rem; font-size: 0.95rem; color: var(--muted); max-width: 40rem; }
+
+        /* Sections */
+        .section { padding: 5rem 0; border-top: 1px solid var(--rule); }
+        .section > .wrap > h2 {
+            font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 3rem;
         }
 
-        .contact-item p {
-            color: var(--text-secondary);
+        .split { display: grid; gap: 0.75rem; }
+        @media (min-width: 48rem) { .split { grid-template-columns: 19rem 1fr; gap: 2.5rem; } }
+
+        .case + .case { margin-top: 3.5rem; }
+        .case h3 { font-size: 1.4rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+        .case .where { margin-top: 0.4rem; color: var(--muted); font-size: 1rem; }
+        .case p { max-width: 38rem; }
+        .case p + p { margin-top: 0.9rem; }
+        .case .stack { color: var(--muted); font-size: 1rem; }
+
+        .job + .job { margin-top: 2.25rem; }
+        .job .years { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 1rem; padding-top: 0.15rem; }
+        .job h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+        .job h3 span { font-weight: 400; color: var(--muted); }
+        .job p { margin-top: 0.35rem; max-width: 38rem; }
+
+        .facts { display: grid; gap: 2.5rem; }
+        @media (min-width: 48rem) { .facts { grid-template-columns: 1fr 1fr; } }
+        .facts h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .facts p { max-width: 32rem; }
+        .facts p + h3 { margin-top: 2rem; }
+        .facts .muted { color: var(--muted); }
+
+        /* Contact */
+        .contact .mail {
+            display: inline-block;
+            font-size: clamp(1.6rem, 5.5vw, 3.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            word-break: break-word;
+            text-decoration-thickness: 3px;
+            text-underline-offset: 0.15em;
         }
+        .contact .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 2rem; }
+        .contact .where { margin-top: 1.25rem; color: var(--muted); max-width: 36rem; }
 
-        /* Footer */
-        footer {
-            background-color: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            section {
-                padding: 3rem 0;
-            }
-
-            .timeline::before {
-                left: 0;
-            }
-
-            .timeline-item {
-                padding-left: 2rem;
-            }
-
-            .timeline-header {
-                flex-direction: column;
-            }
-        }
+        footer { padding: 2.5rem 0 3rem; color: var(--muted); font-size: 0.95rem; border-top: 1px solid var(--rule); }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Leonel Gasparrini</h1>
-                <h2>Software Engineer | Full-Stack Developer</h2>
-                <p>10+ Years Building Scalable Web Applications</p>
-                
-                <div class="tech-badges">
-                    <span class="badge">Ruby on Rails</span>
-                    <span class="badge">React</span>
-                    <span class="badge">JavaScript</span>
-                    <span class="badge">PostgreSQL</span>
-                    <span class="badge">Node.js</span>
-                </div>
+    <header class="wrap top">
+        <strong>Leonel Gasparrini</strong>
+        <nav aria-label="Sections">
+            <a href="#work">Work</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-                <div class="cta-buttons">
-                    <a href="https://linkedin.com/in/jlgasparrini" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View LinkedIn</a>
-                    <a href="mailto:jlgasparrini@gmail.com" class="btn btn-secondary">Email Me</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About</h2>
-            <div class="about-content">
-                <p>
-                    Full-stack engineer with 10+ years building web applications at scale using Ruby on Rails and React. 
-                    Experienced solving complex problems including payment integrations, platform consolidations, performance 
-                    optimization, and system design. Comfortable across the entire stack from database architecture to frontend 
-                    implementation.
+    <main>
+        <section class="wrap hero" aria-labelledby="headline">
+            <img src="leonel.jpg" alt="Leonel Gasparrini" width="640" height="640">
+            <div>
+                <h1 id="headline">I build the parts of a marketplace that can't break.</h1>
+                <p class="lede">
+                    Senior full-stack engineer with <strong>13 years of Ruby on Rails and React</strong>.
+                    Almost six years at GOAT Group working on checkout, payments and search for a
+                    marketplace with over a million sellers. Now rebuilding Elefta's platform for watch dealers.
                 </p>
-                <p style="margin-top: 1rem;">
-                    Remote work veteran with international teams (Argentina → US/Spain/Uruguay). Quick learner who adapts across 
-                    different tech stacks and business domains, owning features end-to-end.
-                </p>
+                <div class="cta">
+                    <a class="button" href="mailto:jlgasparrini@gmail.com">Email me</a>
+                    <span class="status">Open to senior full-time remote roles</span>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-title">Software Engineer</div>
-                                <div class="timeline-company">GOAT Group</div>
-                            </div>
-                            <div class="timeline-date">2020 - Present</div>
-                        </div>
-                        <div class="timeline-description">
-                            <ul>
-                                <li>Maintaining applications serving 5M+ users</li>
-                                <li>Built payment integrations, led framework migrations</li>
-                                <li>Platform consolidation across acquired companies</li>
-                            </ul>
-                        </div>
-                    </div>
+        <section class="wrap career" aria-label="Career timeline, 2013 to now">
+            <div class="chart">
+                <div class="row now">
+                    <p class="row-label">Elefta <span>via SWARE</span></p>
+                    <div class="track"><div class="bar" style="--s:2025.92;--e:2026.83"></div></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-title">Backend Engineer</div>
-                                <div class="timeline-company">Rootstrap</div>
-                            </div>
-                            <div class="timeline-date">2019 - 2020</div>
-                        </div>
-                        <div class="timeline-description">
-                            <ul>
-                                <li>Rental e-commerce platform</li>
-                                <li>Rails & React development</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="row">
+                    <p class="row-label">GOAT Group</p>
+                    <div class="track"><div class="bar" style="--s:2020.17;--e:2025.92"></div></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-title">Software Engineer</div>
-                                <div class="timeline-company">Toptive</div>
-                            </div>
-                            <div class="timeline-date">2018 - 2019</div>
-                        </div>
-                        <div class="timeline-description">
-                            <ul>
-                                <li>Multiple client projects</li>
-                                <li>Full-stack & mobile development</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="row">
+                    <p class="row-label">Rootstrap</p>
+                    <div class="track"><div class="bar" style="--s:2019.58;--e:2020.08"></div></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-title">Technical Lead</div>
-                                <div class="timeline-company">Government Project</div>
-                            </div>
-                            <div class="timeline-date">Previous</div>
-                        </div>
-                        <div class="timeline-description">
-                            <ul>
-                                <li>Led technical architecture and implementation</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="row">
+                    <p class="row-label">Toptive</p>
+                    <div class="track"><div class="bar" style="--s:2018.67;--e:2019.58"></div></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-title">Software Engineer</div>
-                                <div class="timeline-company">Linkgua & PlumLabs</div>
-                            </div>
-                            <div class="timeline-date">Previous</div>
-                        </div>
-                        <div class="timeline-description">
-                            <ul>
-                                <li>Full-stack development across various projects</li>
-                            </ul>
-                        </div>
+                <div class="row">
+                    <p class="row-label">Linkgua <span>Barcelona</span></p>
+                    <div class="track"><div class="bar" style="--s:2017.75;--e:2018.67"></div></div>
+                </div>
+                <div class="row">
+                    <p class="row-label">City Council <span>tech lead</span></p>
+                    <div class="track"><div class="bar" style="--s:2015.33;--e:2017.83"></div></div>
+                </div>
+                <div class="row">
+                    <p class="row-label">PlumLabs</p>
+                    <div class="track"><div class="bar" style="--s:2013.83;--e:2017.83"></div></div>
+                </div>
+                <div class="row side">
+                    <p class="row-label">University <span>teaching</span></p>
+                    <div class="track"><div class="bar" style="--s:2013.17;--e:2015.92"></div></div>
+                </div>
+                <div class="axis" aria-hidden="true">
+                    <span></span>
+                    <div class="ticks">
+                        <span>2013</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                        <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>💻 Languages</h3>
-                    <ul>
-                        <li>Ruby</li>
-                        <li>JavaScript</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>PHP</li>
-                    </ul>
+        <section id="work" class="section" aria-labelledby="work-title">
+            <div class="wrap">
+                <h2 id="work-title">Selected work</h2>
+
+                <article class="case split">
+                    <div>
+                        <h3>One checkout for a group of marketplaces</h3>
+                        <p class="where">GOAT Group, 2020 to 2025</p>
+                    </div>
+                    <div>
+                        <p>
+                            GOAT Group grew by merging companies, and each one came with its own checkout.
+                            We replaced them with a single master checkout that every platform redirects to.
+                            My part was making carts work across platforms: the validations and rules each
+                            brand needed, so nothing a business team relied on got lost in the merge.
+                        </p>
+                        <p>
+                            Payments were only partly integrated when I started on them. Finishing those
+                            integrations was the work I enjoyed most there.
+                        </p>
+                        <p class="stack">Ruby on Rails, React, PostgreSQL, Sidekiq</p>
+                    </div>
+                </article>
+
+                <article class="case split">
+                    <div>
+                        <h3>Making search fast again</h3>
+                        <p class="where">GOAT Group</p>
+                    </div>
+                    <div>
+                        <p>
+                            Search was slow at times, and no single cause explained it. It was a mix of N+1
+                            queries, Elasticsearch indexes drifting out of sync with the database, and very
+                            little caching. We fixed the query patterns, made index syncing reliable and added
+                            caching where reads dominated.
+                        </p>
+                        <p class="stack">Elasticsearch, PostgreSQL, Rails</p>
+                    </div>
+                </article>
+
+                <article class="case split">
+                    <div>
+                        <h3>Rails 5 to Rails 7.2 in production</h3>
+                        <p class="where">GOAT Group</p>
+                    </div>
+                    <div>
+                        <p>
+                            Led the upgrade of a large production app through several major Rails versions,
+                            along with Ruby, while it kept serving the marketplace. I was also on the incident
+                            rotation: outages, production data that fell out of sync between systems, and the
+                            hard cases the support team escalated.
+                        </p>
+                        <p class="stack">Ruby on Rails, RSpec</p>
+                    </div>
+                </article>
+
+                <article class="case split">
+                    <div>
+                        <h3>A legislative system built from scratch</h3>
+                        <p class="where">Río Cuarto City Council, 2015 to 2017</p>
+                    </div>
+                    <div>
+                        <p>
+                            I joined as an intern and became technical lead six months later. I gathered
+                            requirements directly with council staff, made every architecture decision and
+                            mentored a junior developer. We delivered a workflow platform that takes a bill
+                            from submission to official approval.
+                        </p>
+                        <p class="stack">Ruby on Rails, PostgreSQL, TDD with RSpec and Cucumber</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience" class="section" aria-labelledby="experience-title">
+            <div class="wrap">
+                <h2 id="experience-title">Experience</h2>
+
+                <div class="job split">
+                    <p class="years">2025 to now</p>
+                    <div>
+                        <h3>Senior Full-Stack Engineer <span>at SWARE, for Elefta</span></h3>
+                        <p>Rebuilding Elefta's platform for watch dealers (inventory, invoicing, webstores and a B2B marketplace) to run leaner, while shipping new features.</p>
+                    </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3>🚀 Frameworks</h3>
-                    <ul>
-                        <li>Ruby on Rails</li>
-                        <li>React</li>
-                        <li>Node.js</li>
-                        <li>Express</li>
-                    </ul>
+                <div class="job split">
+                    <p class="years">2020 to 2025</p>
+                    <div>
+                        <h3>Senior Software Engineer <span>at GOAT Group</span></h3>
+                        <p>Checkout unification, payment integrations, Elasticsearch performance and the Rails 7.2 upgrade, on a 10-person team consolidating the group's platforms.</p>
+                    </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3>🗄️ Databases</h3>
-                    <ul>
-                        <li>PostgreSQL</li>
-                        <li>MySQL</li>
-                        <li>Elasticsearch</li>
-                    </ul>
+                <div class="job split">
+                    <p class="years">2019 to 2020</p>
+                    <div>
+                        <h3>Senior Backend Engineer <span>at Rootstrap</span></h3>
+                        <p>A rental e-commerce platform that buys from third-party marketplaces when an item isn't in stock. Backend features, admin dashboard and payment processing.</p>
+                    </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3>🛠️ Tools</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>Docker</li>
-                        <li>RSpec</li>
-                        <li>Jest</li>
-                        <li>CircleCI</li>
-                    </ul>
+                <div class="job split">
+                    <p class="years">2018 to 2019</p>
+                    <div>
+                        <h3>Software Engineer <span>at Toptive</span></h3>
+                        <p>A new client project every two or three months, with React, React Native, Node.js, PHP and Java.</p>
+                    </div>
+                </div>
+                <div class="job split">
+                    <p class="years">2017 to 2018</p>
+                    <div>
+                        <h3>Full-Stack Engineer <span>at Linkgua, Barcelona (remote)</span></h3>
+                        <p>An embeddable widget that recommends related articles using semantic analysis. Fixed the DOM-parsing bug that blocked client integrations and cut backend load times.</p>
+                    </div>
+                </div>
+                <div class="job split">
+                    <p class="years">2015 to 2017</p>
+                    <div>
+                        <h3>Technical Lead <span>at Río Cuarto City Council</span></h3>
+                        <p>Intern to technical lead in six months. Designed and built the council's legislative workflow system.</p>
+                    </div>
+                </div>
+                <div class="job split">
+                    <p class="years">2013 to 2017</p>
+                    <div>
+                        <h3>Software Engineer <span>at PlumLabs</span></h3>
+                        <p>Grew from junior to mid-level building SaaS for hotels, real estate, schools and appointment scheduling, for clients in Argentina and the US.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <h3>Location</h3>
-                    <p>Río Cuarto, Argentina</p>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">✉️</div>
-                    <h3>Email</h3>
-                    <a href="mailto:jlgasparrini@gmail.com">jlgasparrini@gmail.com</a>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">💼</div>
-                    <h3>LinkedIn</h3>
-                    <a href="https://linkedin.com/in/jlgasparrini" target="_blank" rel="noopener noreferrer">linkedin.com/in/jlgasparrini</a>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">🐙</div>
-                    <h3>GitHub</h3>
-                    <a href="https://github.com/jlgasparrini" target="_blank" rel="noopener noreferrer">github.com/jlgasparrini</a>
+        <section class="section" aria-labelledby="background-title">
+            <div class="wrap">
+                <h2 id="background-title">Stack and background</h2>
+                <div class="facts">
+                    <div>
+                        <h3>What I use every day</h3>
+                        <p>Ruby on Rails, React, PostgreSQL, Elasticsearch, Sidekiq, RSpec</p>
+                        <h3>What I've shipped with before</h3>
+                        <p class="muted">Node.js, React Native, PHP and Symfony, Java, MySQL, MongoDB, Firebase, Docker, CircleCI</p>
+                    </div>
+                    <div>
+                        <h3>Education</h3>
+                        <p>Licenciatura en Ciencias de la Computación (Computer Science), Universidad Nacional de Río Cuarto</p>
+                        <h3>Teaching</h3>
+                        <p class="muted">Teaching assistant for Data Structures and Algorithms II, 2013 to 2015. Lab sessions, code reviews and complexity analysis.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section id="contact" class="section contact" aria-labelledby="contact-title">
+            <div class="wrap">
+                <h2 id="contact-title">Looking for a senior engineer?</h2>
+                <a class="mail" href="mailto:jlgasparrini@gmail.com">jlgasparrini@gmail.com</a>
+                <p class="where">Based in Río Cuarto, Argentina (UTC−3), so my day overlaps the US workday. Remote with US and European teams since 2017.</p>
+                <div class="links">
+                    <a href="https://linkedin.com/in/jlgasparrini" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/jlgasparrini" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Leonel Gasparrini. All rights reserved.</p>
-        </div>
+        <div class="wrap">Leonel Gasparrini. Source on <a href="https://github.com/jlgasparrini/jlgasparrini.github.io">GitHub</a>.</div>
     </footer>
-
-    <script>
-        // Smooth scroll animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Add smooth hover effects to timeline items
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.1}s`;
-        });
-    </script>
 </body>
 </html>
