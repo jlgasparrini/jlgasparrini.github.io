@@ -11,126 +11,137 @@
     <meta property="og:description" content="13 years of Ruby on Rails and React. Checkout, payments and search at GOAT Group. Open to senior full-time remote roles.">
     <meta property="og:image" content="https://jlgasparrini.github.io/leonel.jpg">
     <meta name="twitter:card" content="summary">
-    <meta name="theme-color" content="#F2F4F6" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0D1520" media="(prefers-color-scheme: dark)">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23B3123A'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3ELG%3C/text%3E%3C/svg%3E">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0E1420">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF4D6D'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%230E1420' text-anchor='middle'%3ELG%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Schibsted+Grotesk:wght@400..700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F2F4F6;
-            --ink: #0F1B2D;
-            --muted: #566273;
-            --rule: #D2D8DF;
-            --track: #E3E7EC;
-            --accent: #B3123A;
-            --on-accent: #FFFFFF;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0D1520;
-                --ink: #E6EBF1;
-                --muted: #95A1B2;
-                --rule: #26334A;
-                --track: #18233A;
-                --accent: #FF5C7E;
-                --on-accent: #0D1520;
-            }
+            --bg: #0E1420;
+            --card: #161E2E;
+            --ink: #EEF1F5;
+            --muted: #8D99AC;
+            --dim: #3B4759;
+            --rule: #222C3E;
+            --accent: #FF4D6D;
+            --display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
         body {
             margin: 0;
             background: var(--bg);
             color: var(--ink);
             font-family: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-            font-size: 1.125rem;
-            line-height: 1.55;
+            font-size: 1.0625rem;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, p, ul { margin: 0; }
         ul { padding: 0; list-style: none; }
-
         a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
         a:hover { color: var(--accent); }
-        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-        .wrap {
-            max-width: 68rem;
+        /* Scroll progress: CSS scroll-driven animation, hidden where unsupported */
+        .progress { display: none; }
+        @supports (animation-timeline: scroll()) {
+            .progress {
+                display: block;
+                position: fixed;
+                inset: 0 0 auto 0;
+                height: 3px;
+                z-index: 20;
+                background: var(--accent);
+                transform-origin: left;
+                animation: progress linear both;
+                animation-timeline: scroll(root);
+            }
+            @keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        }
+
+        /* Vertical email on the right edge, wide screens only */
+        .side-mail { display: none; }
+        @media (min-width: 80rem) {
+            .side-mail {
+                display: block;
+                position: fixed;
+                right: 1.5rem;
+                bottom: 2rem;
+                writing-mode: vertical-rl;
+                font-size: 0.875rem;
+                letter-spacing: 0.04em;
+                color: var(--muted);
+                text-decoration: none;
+            }
+            .side-mail::after {
+                content: '';
+                display: inline-block;
+                width: 1px;
+                height: 4rem;
+                margin-top: 1rem;
+                background: var(--dim);
+            }
+        }
+
+        /* Page layout: sticky profile card + scrolling content */
+        .page {
+            max-width: 76rem;
             margin: 0 auto;
-            padding: 0 1rem;
-        }
-        @media (min-width: 48rem) { .wrap { padding: 0 2.5rem; } }
-
-        /* Top bar */
-        .top {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 1rem;
-            padding-top: 1.75rem;
-            font-size: 1rem;
-        }
-        .top strong { font-weight: 700; }
-        .top nav { display: flex; gap: 1.25rem; }
-        .top nav a { text-decoration: none; color: var(--muted); }
-        .top nav a:hover { color: var(--accent); }
-        @media (max-width: 30rem) { .top nav a[href="#experience"] { display: none; } }
-
-        /* Hero */
-        .hero {
+            padding: 1rem;
             display: grid;
-            gap: 1.5rem;
-            padding-block: 4.5rem 3.5rem;
+            gap: 1rem;
         }
-        @media (min-width: 48rem) {
-            .hero { grid-template-columns: 9rem 1fr; gap: 2.5rem; padding-block: 7rem 4.5rem; }
+        @media (min-width: 64rem) {
+            .page {
+                grid-template-columns: 20rem 1fr;
+                gap: 4rem;
+                padding: 2rem 3.5rem 2rem 2rem;
+            }
         }
-        .hero img {
-            width: 5.5rem;
-            height: 5.5rem;
-            border-radius: 50%;
+
+        /* Profile card */
+        .profile {
+            background: var(--card);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            display: grid;
+            gap: 1.25rem;
+            align-content: start;
+        }
+        @media (min-width: 64rem) {
+            .profile {
+                position: sticky;
+                top: 2rem;
+                max-height: calc(100vh - 4rem);
+                overflow-y: auto;
+                padding: 1.75rem;
+            }
+        }
+        .profile img {
+            width: 100%;
+            max-width: 9rem;
+            height: auto;
+            aspect-ratio: 1;
             object-fit: cover;
+            border-radius: 1rem;
         }
-        @media (min-width: 48rem) { .hero img { width: 9rem; height: 9rem; } }
-
-        .hero h1 {
-            font-size: clamp(2.25rem, 5.4vw, 4.25rem);
-            line-height: 1.04;
+        @media (min-width: 64rem) { .profile img { max-width: none; } }
+        .profile .name {
+            font-family: var(--display);
+            font-size: 2.25rem;
             font-weight: 800;
-            letter-spacing: -0.035em;
-            max-width: 15ch;
+            line-height: 1;
+            text-transform: uppercase;
         }
-        .lede {
-            margin-top: 1.5rem;
-            max-width: 36rem;
-            font-size: 1.25rem;
-            color: var(--muted);
-        }
-        .lede strong { color: var(--ink); font-weight: 600; }
-
-        .cta {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem 1.5rem;
-            margin-top: 2rem;
-        }
-        .button {
-            display: inline-block;
-            padding: 0.75rem 1.4rem;
-            background: var(--accent);
-            color: var(--on-accent);
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 999px;
-        }
-        .button:hover { color: var(--on-accent); filter: brightness(1.08); }
-        .status { color: var(--muted); font-size: 1rem; }
+        .profile .role { margin-top: 0.35rem; color: var(--muted); }
+        .status { font-size: 0.95rem; }
         .status::before {
             content: '';
             display: inline-block;
@@ -138,21 +149,94 @@
             height: 0.55rem;
             margin-right: 0.5rem;
             border-radius: 50%;
-            background: #1F9D55;
+            background: #2FD07A;
+            box-shadow: 0 0 0 4px rgba(47, 208, 122, 0.15);
             vertical-align: 0.08em;
         }
+        .button {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 0.75rem;
+        }
+        .button:hover { color: var(--bg); filter: brightness(1.1); }
+        .profile dl { margin: 0; display: grid; gap: 0.75rem; font-size: 0.95rem; }
+        .profile dt { color: var(--muted); font-size: 0.85rem; }
+        .profile dd { margin: 0; overflow-wrap: anywhere; }
+        .socials { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .socials a {
+            padding: 0.35rem 0.75rem;
+            border: 1px solid var(--dim);
+            border-radius: 999px;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .socials a:hover { border-color: var(--accent); }
+
+        /* Floating section nav */
+        .nav {
+            position: sticky;
+            top: 1rem;
+            z-index: 10;
+            justify-self: start;
+            display: flex;
+            gap: 0.25rem;
+            padding: 0.3rem;
+            background: rgba(22, 30, 46, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--rule);
+            border-radius: 999px;
+            font-size: 0.95rem;
+        }
+        .nav a { padding: 0.4rem 0.9rem; border-radius: 999px; text-decoration: none; color: var(--muted); }
+        .nav a:hover { color: var(--ink); background: var(--rule); }
+        @media (min-width: 64rem) { .nav { top: 2rem; } }
+
+        main { min-width: 0; display: grid; gap: 0; }
+
+        /* Two-tone display headings */
+        .big {
+            font-family: var(--display);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -0.005em;
+        }
+        .big span { display: block; color: var(--dim); }
+        h1.big { font-size: clamp(3.5rem, 11vw, 8.5rem); }
+        h2.big { font-size: clamp(2.75rem, 7vw, 5.5rem); margin-bottom: 2.5rem; }
+
+        .block { padding: 4.5rem 0 0; scroll-margin-top: 4rem; }
+        .intro { padding-top: 2.5rem; }
+        .lede { margin-top: 2rem; max-width: 36rem; font-size: 1.2rem; color: var(--muted); }
+        .lede strong { color: var(--ink); font-weight: 600; }
+
+        /* Stats */
+        .stats {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem 1.5rem;
+        }
+        @media (min-width: 48rem) { .stats { grid-template-columns: repeat(4, 1fr); } }
+        .stats dt {
+            font-family: var(--display);
+            font-size: clamp(3rem, 6vw, 4.25rem);
+            font-weight: 800;
+            line-height: 1;
+        }
+        .stats dd { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.95rem; line-height: 1.4; max-width: 12rem; }
+        .stats { margin-left: 0; margin-right: 0; margin-bottom: 0; }
 
         /* Career chart: one bar per role, positioned in years since 2013 */
-        .career { padding-bottom: 5rem; }
         .chart { --from: 2013; --span: 14; }
-        .row, .axis {
-            display: grid;
-            grid-template-columns: 1fr;
-            column-gap: 1.5rem;
-        }
-        @media (min-width: 48rem) {
-            .row, .axis { grid-template-columns: 13rem 1fr; }
-        }
+        .row, .axis { display: grid; grid-template-columns: 1fr; column-gap: 1.5rem; }
+        @media (min-width: 48rem) { .row, .axis { grid-template-columns: 11rem 1fr; } }
         .row { padding: 0.45rem 0; }
         .row-label { font-size: 0.95rem; line-height: 1.3; }
         .row-label span { color: var(--muted); }
@@ -160,7 +244,7 @@
             position: relative;
             height: 0.9rem;
             margin-top: 0.35rem;
-            background: var(--track);
+            background: var(--card);
             border-radius: 3px;
         }
         @media (min-width: 48rem) { .track { margin-top: 0.2rem; } }
@@ -178,144 +262,172 @@
             animation-delay: calc((var(--s) - var(--from)) * 70ms);
         }
         .row.now .bar { background: var(--accent); }
-        .row.side .bar { background: var(--muted); }
+        .row.side .bar { background: var(--dim); }
         @keyframes grow { from { transform: scaleX(0); } }
         @media (prefers-reduced-motion: reduce) { .bar { animation: none; } }
-
         .axis { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
         .ticks { display: grid; grid-template-columns: repeat(14, 1fr); }
         @media (max-width: 47.99rem) {
             .axis > span:first-child { display: none; }
             .ticks span:nth-child(even) { visibility: hidden; }
         }
-        .chart-note { margin-top: 1rem; font-size: 0.95rem; color: var(--muted); max-width: 40rem; }
 
-        /* Sections */
-        .section { padding: 5rem 0; border-top: 1px solid var(--rule); }
-        .section > .wrap > h2 {
-            font-size: clamp(1.75rem, 3.2vw, 2.5rem);
-            line-height: 1.1;
+        /* Selected work */
+        .case { padding: 2.25rem 0; border-top: 1px solid var(--rule); display: grid; gap: 1rem; }
+        @media (min-width: 64rem) { .case { grid-template-columns: 17rem 1fr; gap: 2.5rem; } }
+        .case h3 {
+            font-family: var(--display);
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 3rem;
+            line-height: 1;
+            text-transform: uppercase;
         }
-
-        .split { display: grid; gap: 0.75rem; }
-        @media (min-width: 48rem) { .split { grid-template-columns: 19rem 1fr; gap: 2.5rem; } }
-
-        .case + .case { margin-top: 3.5rem; }
-        .case h3 { font-size: 1.4rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
-        .case .where { margin-top: 0.4rem; color: var(--muted); font-size: 1rem; }
+        .case .where { margin-top: 0.6rem; color: var(--muted); font-size: 0.95rem; }
         .case p { max-width: 38rem; }
         .case p + p { margin-top: 0.9rem; }
-        .case .stack { color: var(--muted); font-size: 1rem; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.1rem; }
+        .chips li {
+            padding: 0.2rem 0.65rem;
+            background: var(--card);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
 
-        .job + .job { margin-top: 2.25rem; }
-        .job .years { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 1rem; padding-top: 0.15rem; }
-        .job h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
-        .job h3 span { font-weight: 400; color: var(--muted); }
-        .job p { margin-top: 0.35rem; max-width: 38rem; }
+        /* Experience */
+        .job { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+        .job .company { color: var(--muted); font-size: 0.95rem; }
+        .job h3 {
+            font-family: var(--display);
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-top: 0.15rem;
+        }
+        .job .years { margin-top: 0.35rem; color: var(--accent); font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+        .job p:last-child { margin-top: 0.6rem; max-width: 40rem; color: var(--muted); }
 
+        /* Stack and background */
         .facts { display: grid; gap: 2.5rem; }
         @media (min-width: 48rem) { .facts { grid-template-columns: 1fr 1fr; } }
-        .facts h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .facts p { max-width: 32rem; }
-        .facts p + h3 { margin-top: 2rem; }
-        .facts .muted { color: var(--muted); }
+        .facts h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .facts > div > * + h3 { margin-top: 2rem; }
+        .facts p { max-width: 32rem; color: var(--muted); }
 
         /* Contact */
-        .contact .mail {
+        .mail {
             display: inline-block;
-            font-size: clamp(1.6rem, 5.5vw, 3.75rem);
+            font-family: var(--display);
+            font-size: clamp(2rem, 6.5vw, 4.75rem);
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            word-break: break-word;
-            text-decoration-thickness: 3px;
-            text-underline-offset: 0.15em;
+            line-height: 1;
+            overflow-wrap: anywhere;
+            text-decoration-thickness: 4px;
+            text-underline-offset: 0.12em;
         }
-        .contact .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 2rem; }
-        .contact .where { margin-top: 1.25rem; color: var(--muted); max-width: 36rem; }
+        .contact .where { margin-top: 1.5rem; color: var(--muted); max-width: 36rem; }
 
-        footer { padding: 2.5rem 0 3rem; color: var(--muted); font-size: 0.95rem; border-top: 1px solid var(--rule); }
+        footer { margin-top: 5rem; padding: 2rem 0; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.95rem; }
     </style>
 </head>
 <body>
-    <header class="wrap top">
-        <strong>Leonel Gasparrini</strong>
-        <nav aria-label="Sections">
-            <a href="#work">Work</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <div class="progress" aria-hidden="true"></div>
+    <a class="side-mail" href="mailto:jlgasparrini@gmail.com">jlgasparrini@gmail.com</a>
 
-    <main>
-        <section class="wrap hero" aria-labelledby="headline">
+    <div class="page">
+        <aside class="profile" aria-label="Profile">
             <img src="leonel.jpg" alt="Leonel Gasparrini" width="640" height="640">
             <div>
-                <h1 id="headline">I build the parts of a marketplace that can't break.</h1>
-                <p class="lede">
-                    Senior full-stack engineer with <strong>13 years of Ruby on Rails and React</strong>.
-                    Almost six years at GOAT Group working on checkout, payments and search for a
-                    marketplace with over a million sellers. Now rebuilding Elefta's platform for watch dealers.
-                </p>
-                <div class="cta">
-                    <a class="button" href="mailto:jlgasparrini@gmail.com">Email me</a>
-                    <span class="status">Open to senior full-time remote roles</span>
-                </div>
+                <p class="name">Leonel Gasparrini</p>
+                <p class="role">Senior Full-Stack Engineer</p>
             </div>
-        </section>
+            <p class="status">Open to senior full-time remote roles</p>
+            <a class="button" href="mailto:jlgasparrini@gmail.com">Email me</a>
+            <dl>
+                <div><dt>Email</dt><dd><a href="mailto:jlgasparrini@gmail.com">jlgasparrini@gmail.com</a></dd></div>
+                <div><dt>Based in</dt><dd>Río Cuarto, Argentina (UTC−3)</dd></div>
+            </dl>
+            <div class="socials">
+                <a href="https://linkedin.com/in/jlgasparrini" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/jlgasparrini" rel="noopener noreferrer">GitHub</a>
+                <a href="https://x.com/leo_gasparrini" rel="noopener noreferrer">X</a>
+                <a href="https://www.instagram.com/leonel.gasparrini/" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </aside>
 
-        <section class="wrap career" aria-label="Career timeline, 2013 to now">
-            <div class="chart">
-                <div class="row now">
-                    <p class="row-label">Elefta <span>via SWARE</span></p>
-                    <div class="track"><div class="bar" style="--s:2025.92;--e:2026.83"></div></div>
-                </div>
-                <div class="row">
-                    <p class="row-label">GOAT Group</p>
-                    <div class="track"><div class="bar" style="--s:2020.17;--e:2025.92"></div></div>
-                </div>
-                <div class="row">
-                    <p class="row-label">Rootstrap</p>
-                    <div class="track"><div class="bar" style="--s:2019.58;--e:2020.08"></div></div>
-                </div>
-                <div class="row">
-                    <p class="row-label">Toptive</p>
-                    <div class="track"><div class="bar" style="--s:2018.67;--e:2019.58"></div></div>
-                </div>
-                <div class="row">
-                    <p class="row-label">Linkgua <span>Barcelona</span></p>
-                    <div class="track"><div class="bar" style="--s:2017.75;--e:2018.67"></div></div>
-                </div>
-                <div class="row">
-                    <p class="row-label">City Council <span>tech lead</span></p>
-                    <div class="track"><div class="bar" style="--s:2015.33;--e:2017.83"></div></div>
-                </div>
-                <div class="row">
-                    <p class="row-label">PlumLabs</p>
-                    <div class="track"><div class="bar" style="--s:2013.83;--e:2017.83"></div></div>
-                </div>
-                <div class="row side">
-                    <p class="row-label">University <span>teaching</span></p>
-                    <div class="track"><div class="bar" style="--s:2013.17;--e:2015.92"></div></div>
-                </div>
-                <div class="axis" aria-hidden="true">
-                    <span></span>
-                    <div class="ticks">
-                        <span>2013</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
-                        <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+        <main>
+            <nav class="nav" aria-label="Sections">
+                <a href="#work">Work</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <section class="block intro" aria-labelledby="headline">
+                <h1 id="headline" class="big">Full-stack<span>engineer</span></h1>
+                <p class="lede">
+                    I build the parts of a marketplace that can't break.
+                    <strong>13 years of Ruby on Rails and React</strong>, almost six of them at GOAT Group
+                    working on checkout, payments and search for a marketplace with over a million sellers.
+                    Now rebuilding Elefta's platform for watch dealers.
+                </p>
+                <dl class="stats">
+                    <div><dt>13</dt><dd>years shipping production software</dd></div>
+                    <div><dt>1M+</dt><dd>sellers on the GOAT marketplace</dd></div>
+                    <div><dt>5.7</dt><dd>years at GOAT Group</dd></div>
+                    <div><dt>5→7.2</dt><dd>Rails upgrade I led in production</dd></div>
+                </dl>
+            </section>
+
+            <section class="block" aria-labelledby="career-title">
+                <h2 id="career-title" class="big">Career<span>since 2013</span></h2>
+                <div class="chart">
+                    <div class="row now">
+                        <p class="row-label">Elefta <span>via SWARE</span></p>
+                        <div class="track"><div class="bar" style="--s:2025.92;--e:2026.83"></div></div>
+                    </div>
+                    <div class="row">
+                        <p class="row-label">GOAT Group</p>
+                        <div class="track"><div class="bar" style="--s:2020.17;--e:2025.92"></div></div>
+                    </div>
+                    <div class="row">
+                        <p class="row-label">Rootstrap</p>
+                        <div class="track"><div class="bar" style="--s:2019.58;--e:2020.08"></div></div>
+                    </div>
+                    <div class="row">
+                        <p class="row-label">Toptive</p>
+                        <div class="track"><div class="bar" style="--s:2018.67;--e:2019.58"></div></div>
+                    </div>
+                    <div class="row">
+                        <p class="row-label">Linkgua <span>Barcelona</span></p>
+                        <div class="track"><div class="bar" style="--s:2017.75;--e:2018.67"></div></div>
+                    </div>
+                    <div class="row">
+                        <p class="row-label">City Council <span>tech lead</span></p>
+                        <div class="track"><div class="bar" style="--s:2015.33;--e:2017.83"></div></div>
+                    </div>
+                    <div class="row">
+                        <p class="row-label">PlumLabs</p>
+                        <div class="track"><div class="bar" style="--s:2013.83;--e:2017.83"></div></div>
+                    </div>
+                    <div class="row side">
+                        <p class="row-label">University <span>teaching</span></p>
+                        <div class="track"><div class="bar" style="--s:2013.17;--e:2015.92"></div></div>
+                    </div>
+                    <div class="axis" aria-hidden="true">
+                        <span></span>
+                        <div class="ticks">
+                            <span>2013</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                            <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="work" class="section" aria-labelledby="work-title">
-            <div class="wrap">
-                <h2 id="work-title">Selected work</h2>
+            <section id="work" class="block" aria-labelledby="work-title">
+                <h2 id="work-title" class="big">Selected<span>work</span></h2>
 
-                <article class="case split">
+                <article class="case">
                     <div>
                         <h3>One checkout for a group of marketplaces</h3>
                         <p class="where">GOAT Group, 2020 to 2025</p>
@@ -331,11 +443,11 @@
                             Payments were only partly integrated when I started on them. Finishing those
                             integrations was the work I enjoyed most there.
                         </p>
-                        <p class="stack">Ruby on Rails, React, PostgreSQL, Sidekiq</p>
+                        <ul class="chips"><li>Ruby on Rails</li><li>React</li><li>PostgreSQL</li><li>Sidekiq</li></ul>
                     </div>
                 </article>
 
-                <article class="case split">
+                <article class="case">
                     <div>
                         <h3>Making search fast again</h3>
                         <p class="where">GOAT Group</p>
@@ -347,13 +459,13 @@
                             little caching. We fixed the query patterns, made index syncing reliable and added
                             caching where reads dominated.
                         </p>
-                        <p class="stack">Elasticsearch, PostgreSQL, Rails</p>
+                        <ul class="chips"><li>Elasticsearch</li><li>PostgreSQL</li><li>Rails</li></ul>
                     </div>
                 </article>
 
-                <article class="case split">
+                <article class="case">
                     <div>
-                        <h3>Rails 5 to Rails 7.2 in production</h3>
+                        <h3>Rails 5 to 7.2 in production</h3>
                         <p class="where">GOAT Group</p>
                     </div>
                     <div>
@@ -363,13 +475,13 @@
                             rotation: outages, production data that fell out of sync between systems, and the
                             hard cases the support team escalated.
                         </p>
-                        <p class="stack">Ruby on Rails, RSpec</p>
+                        <ul class="chips"><li>Ruby on Rails</li><li>RSpec</li></ul>
                     </div>
                 </article>
 
-                <article class="case split">
+                <article class="case">
                     <div>
-                        <h3>A legislative system built from scratch</h3>
+                        <h3>A legislative system from scratch</h3>
                         <p class="where">Río Cuarto City Council, 2015 to 2017</p>
                     </div>
                     <div>
@@ -379,105 +491,84 @@
                             mentored a junior developer. We delivered a workflow platform that takes a bill
                             from submission to official approval.
                         </p>
-                        <p class="stack">Ruby on Rails, PostgreSQL, TDD with RSpec and Cucumber</p>
+                        <ul class="chips"><li>Ruby on Rails</li><li>PostgreSQL</li><li>RSpec</li><li>Cucumber</li></ul>
                     </div>
                 </article>
-            </div>
-        </section>
+            </section>
 
-        <section id="experience" class="section" aria-labelledby="experience-title">
-            <div class="wrap">
-                <h2 id="experience-title">Experience</h2>
+            <section id="experience" class="block" aria-labelledby="experience-title">
+                <h2 id="experience-title" class="big">Experience<span>in full</span></h2>
 
-                <div class="job split">
+                <div class="job">
+                    <p class="company">SWARE, for Elefta</p>
+                    <h3>Senior Full-Stack Engineer</h3>
                     <p class="years">2025 to now</p>
-                    <div>
-                        <h3>Senior Full-Stack Engineer <span>at SWARE, for Elefta</span></h3>
-                        <p>Rebuilding Elefta's platform for watch dealers (inventory, invoicing, webstores and a B2B marketplace) to run leaner, while shipping new features.</p>
-                    </div>
+                    <p>Rebuilding Elefta's platform for watch dealers (inventory, invoicing, webstores and a B2B marketplace) to run leaner, while shipping new features.</p>
                 </div>
-                <div class="job split">
+                <div class="job">
+                    <p class="company">GOAT Group</p>
+                    <h3>Senior Software Engineer</h3>
                     <p class="years">2020 to 2025</p>
-                    <div>
-                        <h3>Senior Software Engineer <span>at GOAT Group</span></h3>
-                        <p>Checkout unification, payment integrations, Elasticsearch performance and the Rails 7.2 upgrade, on a 10-person team consolidating the group's platforms.</p>
-                    </div>
+                    <p>Checkout unification, payment integrations, Elasticsearch performance and the Rails 7.2 upgrade, on a 10-person team consolidating the group's platforms.</p>
                 </div>
-                <div class="job split">
+                <div class="job">
+                    <p class="company">Rootstrap</p>
+                    <h3>Senior Backend Engineer</h3>
                     <p class="years">2019 to 2020</p>
-                    <div>
-                        <h3>Senior Backend Engineer <span>at Rootstrap</span></h3>
-                        <p>A rental e-commerce platform that buys from third-party marketplaces when an item isn't in stock. Backend features, admin dashboard and payment processing.</p>
-                    </div>
+                    <p>A rental e-commerce platform that buys from third-party marketplaces when an item isn't in stock. Backend features, admin dashboard and payment processing.</p>
                 </div>
-                <div class="job split">
+                <div class="job">
+                    <p class="company">Toptive</p>
+                    <h3>Software Engineer</h3>
                     <p class="years">2018 to 2019</p>
-                    <div>
-                        <h3>Software Engineer <span>at Toptive</span></h3>
-                        <p>A new client project every two or three months, with React, React Native, Node.js, PHP and Java.</p>
-                    </div>
+                    <p>A new client project every two or three months, with React, React Native, Node.js, PHP and Java.</p>
                 </div>
-                <div class="job split">
+                <div class="job">
+                    <p class="company">Linkgua, Barcelona (remote)</p>
+                    <h3>Full-Stack Engineer</h3>
                     <p class="years">2017 to 2018</p>
-                    <div>
-                        <h3>Full-Stack Engineer <span>at Linkgua, Barcelona (remote)</span></h3>
-                        <p>An embeddable widget that recommends related articles using semantic analysis. Fixed the DOM-parsing bug that blocked client integrations and cut backend load times.</p>
-                    </div>
+                    <p>An embeddable widget that recommends related articles using semantic analysis. Fixed the DOM-parsing bug that blocked client integrations and cut backend load times.</p>
                 </div>
-                <div class="job split">
+                <div class="job">
+                    <p class="company">Río Cuarto City Council</p>
+                    <h3>Technical Lead</h3>
                     <p class="years">2015 to 2017</p>
-                    <div>
-                        <h3>Technical Lead <span>at Río Cuarto City Council</span></h3>
-                        <p>Intern to technical lead in six months. Designed and built the council's legislative workflow system.</p>
-                    </div>
+                    <p>Intern to technical lead in six months. Designed and built the council's legislative workflow system.</p>
                 </div>
-                <div class="job split">
+                <div class="job">
+                    <p class="company">PlumLabs</p>
+                    <h3>Software Engineer</h3>
                     <p class="years">2013 to 2017</p>
-                    <div>
-                        <h3>Software Engineer <span>at PlumLabs</span></h3>
-                        <p>Grew from junior to mid-level building SaaS for hotels, real estate, schools and appointment scheduling, for clients in Argentina and the US.</p>
-                    </div>
+                    <p>Grew from junior to mid-level building SaaS for hotels, real estate, schools and appointment scheduling, for clients in Argentina and the US.</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section" aria-labelledby="background-title">
-            <div class="wrap">
-                <h2 id="background-title">Stack and background</h2>
+            <section class="block" aria-labelledby="background-title">
+                <h2 id="background-title" class="big">Stack<span>and background</span></h2>
                 <div class="facts">
                     <div>
                         <h3>What I use every day</h3>
-                        <p>Ruby on Rails, React, PostgreSQL, Elasticsearch, Sidekiq, RSpec</p>
+                        <ul class="chips"><li>Ruby on Rails</li><li>React</li><li>PostgreSQL</li><li>Elasticsearch</li><li>Sidekiq</li><li>RSpec</li></ul>
                         <h3>What I've shipped with before</h3>
-                        <p class="muted">Node.js, React Native, PHP and Symfony, Java, MySQL, MongoDB, Firebase, Docker, CircleCI</p>
+                        <p>Node.js, React Native, PHP and Symfony, Java, MySQL, MongoDB, Firebase, Docker, CircleCI</p>
                     </div>
                     <div>
                         <h3>Education</h3>
                         <p>Licenciatura en Ciencias de la Computación (Computer Science), Universidad Nacional de Río Cuarto</p>
                         <h3>Teaching</h3>
-                        <p class="muted">Teaching assistant for Data Structures and Algorithms II, 2013 to 2015. Lab sessions, code reviews and complexity analysis.</p>
+                        <p>Teaching assistant for Data Structures and Algorithms II, 2013 to 2015. Lab sessions, code reviews and complexity analysis.</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="contact" class="section contact" aria-labelledby="contact-title">
-            <div class="wrap">
-                <h2 id="contact-title">Looking for a senior engineer?</h2>
+            <section id="contact" class="block contact" aria-labelledby="contact-title">
+                <h2 id="contact-title" class="big">Let's<span>talk</span></h2>
                 <a class="mail" href="mailto:jlgasparrini@gmail.com">jlgasparrini@gmail.com</a>
                 <p class="where">Based in Río Cuarto, Argentina (UTC−3), so my day overlaps the US workday. Remote with US and European teams since 2017.</p>
-                <div class="links">
-                    <a href="https://linkedin.com/in/jlgasparrini" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://github.com/jlgasparrini" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://x.com/leo_gasparrini" rel="noopener noreferrer">X</a>
-                    <a href="https://www.instagram.com/leonel.gasparrini/" rel="noopener noreferrer">Instagram</a>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <footer>
-        <div class="wrap">Leonel Gasparrini. Source on <a href="https://github.com/jlgasparrini/jlgasparrini.github.io">GitHub</a>.</div>
-    </footer>
+            <footer>Leonel Gasparrini. Source on <a href="https://github.com/jlgasparrini/jlgasparrini.github.io">GitHub</a>.</footer>
+        </main>
+    </div>
 </body>
 </html>
