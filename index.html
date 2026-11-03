@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonel Gasparrini, Senior Full-Stack Engineer</title>
-    <meta name="description" content="Senior full-stack engineer with 13 years of Ruby on Rails and React. Checkout, payments and search for GOAT Group; now rebuilding Elefta's platform. Open to senior full-time remote roles.">
+    <title>Leonel Gasparrini, AI-Native Senior Full-Stack Engineer</title>
+    <meta name="description" content="AI-native senior full-stack engineer: 13 years of Ruby on Rails and React, now shipping AI-first with Claude Code. Checkout, payments and search at GOAT Group. Open to senior full-time remote roles.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jlgasparrini.github.io/">
-    <meta property="og:title" content="Leonel Gasparrini, Senior Full-Stack Engineer">
-    <meta property="og:description" content="13 years of Ruby on Rails and React. Checkout, payments and search at GOAT Group. Open to senior full-time remote roles.">
+    <meta property="og:title" content="Leonel Gasparrini, AI-Native Senior Full-Stack Engineer">
+    <meta property="og:description" content="13 years of Ruby on Rails and React, now shipping AI-first with Claude Code. Open to senior full-time remote roles.">
     <meta property="og:image" content="https://jlgasparrini.github.io/leonel.jpg">
     <meta name="twitter:card" content="summary">
     <meta name="color-scheme" content="dark">
@@ -215,6 +215,9 @@
         .intro { padding-top: 2.5rem; }
         .lede { margin-top: 2rem; max-width: 36rem; font-size: 1.2rem; color: var(--muted); }
         .lede strong { color: var(--ink); font-weight: 600; }
+        .prose { font-size: 1.15rem; color: var(--muted); }
+        .prose p { max-width: 40rem; }
+        .prose p + p { margin-top: 1.1rem; }
 
         /* Stats */
         .stats {
@@ -364,19 +367,44 @@
             </nav>
 
             <section class="block intro" aria-labelledby="headline">
-                <h1 id="headline" class="big">Full-stack<span>engineer</span></h1>
+                <h1 id="headline" class="big">AI-native<span>engineer</span></h1>
                 <p class="lede">
-                    I build the parts of a marketplace that can't break.
-                    <strong>13 years of Ruby on Rails and React</strong>, almost six of them at GOAT Group
-                    working on checkout, payments and search for a marketplace with over a million sellers.
-                    Now rebuilding Elefta's platform for watch dealers.
+                    AI writes most of my code now.
+                    <strong>Thirteen years of Ruby on Rails and React in production</strong> is how I decide what ships.
+                    Almost six of them at GOAT Group, on checkout, payments and search for a marketplace
+                    with over a million sellers. Now rebuilding Elefta's platform for watch dealers, AI-first, at SWARE.
                 </p>
                 <dl class="stats">
                     <div><dt>13</dt><dd>years shipping production software</dd></div>
                     <div><dt>1M+</dt><dd>sellers on the GOAT marketplace</dd></div>
-                    <div><dt>5.7</dt><dd>years at GOAT Group</dd></div>
+                    <div><dt>Days</dt><dd>to ship what used to take months, with Claude Code</dd></div>
                     <div><dt>5→7.2</dt><dd>Rails upgrade I led in production</dd></div>
                 </dl>
+            </section>
+
+            <section class="block" aria-labelledby="about-title">
+                <h2 id="about-title" class="big">About<span>me</span></h2>
+                <div class="prose">
+                    <p>
+                        I've been writing software professionally since 2013, mostly with Ruby on Rails and React.
+                        The work I'm best at is the kind where a mistake costs money: checkout, payments, data that
+                        has to stay in sync across systems, and search that has to stay fast under load.
+                    </p>
+                    <p>
+                        I like clean, maintainable code the next person can change safely, technical decisions backed
+                        by data, and seeing the result in front of real users. I've worked remotely with teams in the
+                        US, Spain and Uruguay since 2017, across e-commerce, publishing, government and SaaS.
+                    </p>
+                    <p>
+                        Since mid-2026 I've worked AI-first at SWARE: agents write the code, and I own the architecture,
+                        the review and what reaches production. It's the same judgement I built on checkout and payments,
+                        applied at a much faster pace.
+                    </p>
+                    <p>
+                        These days I care most about performance and developer experience: fast pages, and codebases
+                        people aren't afraid to touch.
+                    </p>
+                </div>
             </section>
 
             <section class="block" aria-labelledby="career-title">
@@ -426,6 +454,26 @@
 
             <section id="work" class="block" aria-labelledby="work-title">
                 <h2 id="work-title" class="big">Selected<span>work</span></h2>
+
+                <article class="case">
+                    <div>
+                        <h3>From ticket to production with Claude Code</h3>
+                        <p class="where">SWARE, for Elefta, 2026</p>
+                    </div>
+                    <div>
+                        <p>
+                            We built an internal framework around Claude Code that takes a ticket all the way to a
+                            pull request. It gathers the context Claude needs for the task and generates the code
+                            under the company's rules and conventions. I review it and open the PR, another developer
+                            reviews it, and it goes to staging for QA before production.
+                        </p>
+                        <p>
+                            The review and QA gates stayed the same; the pace didn't. Work that used to take months
+                            now ships in days.
+                        </p>
+                        <ul class="chips"><li>Claude Code</li><li>AI agents</li><li>Code review</li></ul>
+                    </div>
+                </article>
 
                 <article class="case">
                     <div>
@@ -503,7 +551,7 @@
                     <p class="company">SWARE, for Elefta</p>
                     <h3>Senior Full-Stack Engineer</h3>
                     <p class="years">2025 to now</p>
-                    <p>Rebuilding Elefta's platform for watch dealers (inventory, invoicing, webstores and a B2B marketplace) to run leaner, while shipping new features.</p>
+                    <p>Rebuilding Elefta's platform for watch dealers (inventory, invoicing, webstores and a B2B marketplace) to run leaner, while shipping new features. AI-first with Claude Code.</p>
                 </div>
                 <div class="job">
                     <p class="company">GOAT Group</p>
