@@ -273,6 +273,14 @@
         .nav a:hover { color: var(--ink); background: var(--rule); }
         @media (min-width: 64rem) { .nav { top: 2rem; } }
 
+        /* Mobile/tablet: the card is a centered intro; long-form text below stays left-aligned for reading. */
+        @media (max-width: 63.99rem) {
+            .profile { text-align: center; justify-items: center; }
+            .profile .actions { justify-self: stretch; }
+            .profile .copyable, .socials { justify-content: center; }
+            .nav { justify-self: center; }
+        }
+
         main { min-width: 0; display: grid; gap: 0; }
 
         /* Two-tone display headings */
