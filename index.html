@@ -221,7 +221,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
-            padding: 0.2rem 0.45rem;
+            padding: 0.3rem;
             background: none;
             border: 1px solid var(--dim);
             border-radius: 0.4rem;
@@ -234,7 +234,7 @@
         .copy:hover { color: var(--accent); border-color: var(--accent); }
         .copy svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
         .copy .done, .copy.copied .idle { display: none; }
-        .copy.copied .done { display: inline; }
+        .copy.copied .done { display: block; }
         .copy.copied { color: #2FD07A; border-color: #2FD07A; }
         .profile dl { margin: 0; display: grid; gap: 0.75rem; font-size: 0.95rem; }
         .profile dt { color: var(--muted); font-size: 0.85rem; }
@@ -428,7 +428,7 @@
                 <a class="button button-secondary" href="cv/gasparrini_leonel_cv.pdf" data-umami-event="cv-download" download="Leonel-Gasparrini-CV.pdf" aria-label="Download CV (PDF)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>CV</a>
             </div>
             <dl>
-                <div><dt>Email</dt><dd class="copyable"><a href="mailto:jlgasparrini@gmail.com" data-umami-event="email-click" data-umami-event-from="card-link">jlgasparrini@gmail.com</a><button class="copy" type="button" data-umami-event="email-copy" data-copy="jlgasparrini@gmail.com" hidden><svg class="idle" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/></svg><svg class="done" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/></svg><span class="idle">Copy</span><span class="done" role="status">Copied</span></button></dd></div>
+                <div><dt>Email</dt><dd class="copyable"><a href="mailto:jlgasparrini@gmail.com" data-umami-event="email-click" data-umami-event-from="card-link">jlgasparrini@gmail.com</a><button class="copy" type="button" data-umami-event="email-copy" data-copy="jlgasparrini@gmail.com" aria-label="Copy email" title="Copy email" hidden><svg class="idle" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/></svg><svg class="done" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/></svg></button></dd></div>
                 <div><dt>Based in</dt><dd>Río Cuarto, Argentina<br>UTC−3, overlaps US hours</dd></div>
             </dl>
             <div class="socials">
